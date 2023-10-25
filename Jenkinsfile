@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
     }
     stages {
         stage('clean workspace') {
@@ -18,12 +19,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Shadab-inzu/DevSecOps-Project.git'
             }
         }
-        stage("Debug") {
-             steps {
-                    sh "echo 'JAVA_HOME: $JAVA_HOME'"
-                    sh "echo 'PATH: $PATH'"
-            }
-        }
+       
         stage("Sonarqube Analysis") {
             steps {
                 withSonarQubeEnv('sonar-server') {
