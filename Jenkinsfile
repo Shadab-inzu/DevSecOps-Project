@@ -23,11 +23,11 @@ pipeline {
         stage("Sonarqube Analysis") {
             steps {
                 withCredentials([string(credentialsId: 'sonar-token', variable: 'sonar')]) {
-     sh '''$SCANNER_HOME/bin/sonar-scanner \
+                    sh '''$SCANNER_HOME/bin/sonar-scanner \
                         -Dsonar.projectKey=Netfilx \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://52.23.47.49:9000 \
-                        -Dsonar.token=sqp_a50e49176f25b22a3ce539bcad05bdc489547098'''
+                        -Dsonar.login=sqp_e962fa1504aa8b8e0dfc44c8fcc5be2a46c8c782'''
                     }
                
                 }
