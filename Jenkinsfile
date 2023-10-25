@@ -25,7 +25,8 @@ pipeline {
                 withSonarQubeEnv('sonar-server') {
                     tool name: 'jdk17', type: 'jdk'
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
-                    -Dsonar.projectKey=Netflix'''
+                    -Dsonar.projectKey=Netflix -Dsonar.host.url=http://52.23.47.49:9000 \
+                    -Dsonar.token=sqp_a50e49176f25b22a3ce539bcad05bdc489547098'''
                 }
             }
         }
