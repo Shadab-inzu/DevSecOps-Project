@@ -18,5 +18,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Shadab-inzu/DevSecOps-Project.git'
             }
         }
+        stage("Sonarqube Analysis") {
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    -Dsonar.projectKey=Netflix'''
+                }
+            }
+        }
     }
 }
