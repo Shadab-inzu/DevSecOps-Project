@@ -22,13 +22,14 @@ pipeline {
        
         stage("Sonarqube Analysis") {
             steps {
-                withSonarQubeEnv('sonar-server') {
-                    tool name: 'jdk17', type: 'jdk'
-                    sh '''$SCANNER_HOME/bin/sonar-scanner \
+                withCredentials([string(credentialsId: 'sonar-token', variable: 'sonar')]) {
+     sh '''$SCANNER_HOME/bin/sonar-scanner \
                         -Dsonar.projectKey=Netfilx \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://52.23.47.49:9000 \
                         -Dsonar.token=sqp_a50e49176f25b22a3ce539bcad05bdc489547098'''
+                    }
+               
                 }
             }
         }
