@@ -195,7 +195,7 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        
     }
     stages {
         stage('clean workspace') {
@@ -212,7 +212,8 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar-server') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
-                    -Dsonar.projectKey=Netflix'''
+                    -Dsonar.projectKey=Netflix  -Dsonar.host.url=http://52.23.47.49:9000 \
+                    -Dsonar.token=sqp_a50e49176f25b22a3ce539bcad05bdc489547098'''
                 }
             }
         }
