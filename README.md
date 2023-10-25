@@ -195,6 +195,7 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
     }
     stages {
         stage('clean workspace') {
